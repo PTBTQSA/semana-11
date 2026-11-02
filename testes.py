@@ -1,5 +1,5 @@
 import unittest;
-from aluno import AlunoClass; 
+from aluno import AlunoClass;
 from turma import TurmaClass;
 from conexao import ConexaoClass;
 import mongomock;
@@ -14,11 +14,12 @@ class alunoTest(unittest.TestCase):
     self.turma.cadastrarAlunos([self.aluno]);
     self.conexao = ConexaoClass.conexaoMongoDB(self, url = 'localhost.com', banco = 'faculdade')
 
-  def test_salvarAluno(self):   
-    print('Escreva o seu método aqui...')
+  def test_salvarAluno(self):
+    resposta = self.aluno.salvar(conexao = self.conexao, colecao = 'aluno')
+    self.assertEqual(True, resposta, 'Aluno cadastrado incorretamente!')
 
-  def test_salvarTurma(self):   
-    resposta = self.turma.salvar(conexao = self.conexao, colecao = 'turma');  
+  def test_salvarTurma(self):
+    resposta = self.turma.salvar(conexao = self.conexao, colecao = 'turma');
     self.assertEqual(True, resposta, 'Turma cadastrada incorretamente!');
 
 if __name__ == "__main__":
